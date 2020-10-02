@@ -13,7 +13,7 @@ Java se
 - https://java-programming.mooc.fi/
 
 Java EE
--https://spring.io/
+- https://spring.io/
 - https://projects.spring.io/spring-petclinic/
 - https://spring-petclinic.github.io/ 
 - https://spring-petclinic-community.herokuapp.com/ 
