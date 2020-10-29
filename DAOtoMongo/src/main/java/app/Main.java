@@ -20,6 +20,7 @@ public class Main {
 		//add authorDAO to collection
 		Controller.add(authorDAO);
 
+		//print all documents in authors collection thanks to authorDAO
 		Controller.printAll(authorDAO);
 
 	}

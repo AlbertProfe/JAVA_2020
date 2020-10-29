@@ -51,6 +51,7 @@ public class Controller {
 		authorDAO.saveAuthor(virginia);
 	}
 
+	//CALL to printAll from AuthorDAO class thanks to object authorDAO
 	public static void printAll(AuthorDAO authorDAO) {
 
 		authorDAO.printAll();
