@@ -13,6 +13,9 @@ import model.Book;
 
 public class Controller {
 
+	//create MongoClientURI and MongoClient and MongoDatabase
+	//that is connecting our project to MongoDB Atlas,
+	//particularly database city
 	public static MongoDatabase init() {
 
 		MongoClientURI connectionString = new MongoClientURI(
