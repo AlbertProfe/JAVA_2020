@@ -10,7 +10,7 @@ public class Author {
 	private List<Book> books;
 
 	public Author(String name, String surname, int age, List<Book> books) {
-		super();
+		//super();
 		this.name = name;
 		this.surname = surname;
 		this.age = age;
