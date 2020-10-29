@@ -22,8 +22,8 @@ public class Init {
 		Scanner reader = new Scanner(System.in);
 
 		
-		Menu menu = new Menu(reader, db);
-		menu.loop(reader);
+		//Menu menu = new Menu(reader, db);
+		//menu.loop(reader);
 
 		
 
