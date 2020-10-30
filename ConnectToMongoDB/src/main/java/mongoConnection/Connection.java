@@ -16,7 +16,7 @@ public class Connection {
 		// watch out the IP, pal!
 		// string connection from Atlas/Connect
 		MongoClientURI connectionString = new MongoClientURI(
-				"mongodb+srv://cifo:1234@clustertest.0h8fd.mongodb.net/test");
+				"mongodb+srv://xxxxx:1234@clustertest.0h8fd.mongodb.net/test");
 		// create object mongoClient: object to connect, manage, get DBs, handle, ...
 		// CRUD, clean, etc ...
 		MongoClient mongoClient = new MongoClient(connectionString);
