@@ -19,7 +19,7 @@ public class Controller {
 	public static MongoDatabase init() {
 
 		MongoClientURI connectionString = new MongoClientURI(
-				"mongodb+srv://cifo:1234@clustertest.0h8fd.mongodb.net/test");
+				"mongodb+srv://xxxxx:1234@clustertest.0h8fd.mongodb.net/test");
 		MongoClient mongoClient = new MongoClient(connectionString);
 
 		MongoDatabase database = mongoClient.getDatabase("city");
