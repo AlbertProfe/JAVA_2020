@@ -1,23 +1,18 @@
 package app;
 
-import com.mongodb.client.MongoDatabase;
-
-import controller.Controller;
-import dao.AuthorDAO;
+import view.Menu;
 
 public class Main {
 
 	public static void main(String[] args) {
 
+		System.out.println("Loading ....");
 		
-		MongoDatabase database = Controller.init();
-
-		AuthorDAO authorDAO = Controller.setSource(database);
-
-		Controller.add(authorDAO);
-
-		Controller.printAll(authorDAO);
-
+		Menu menu = new Menu();
+		menu.loopIO();
+		
+		System.out.println("Connection finished.");
+		
 	}
 
 }

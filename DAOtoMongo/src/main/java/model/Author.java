@@ -17,6 +17,13 @@ public class Author {
 		this.books = books;
 	}
 
+	public Author(String authorName, String authorSurname, int authorAge) {
+		super();
+		this.name = name;
+		this.surname = surname;
+		this.age = age;
+	}
+
 	@Override
 	public String toString() {
 		return "Author [name=" + name + ", surname=" + surname + ", age=" + age + ", book=" + books + "]";

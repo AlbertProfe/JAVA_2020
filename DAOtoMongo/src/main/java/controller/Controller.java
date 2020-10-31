@@ -2,6 +2,7 @@ package controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
@@ -10,8 +11,11 @@ import com.mongodb.client.MongoDatabase;
 import dao.AuthorDAO;
 import model.Author;
 import model.Book;
+import utils.UtilsIO;
 
 public class Controller {
+
+	public static AuthorDAO authorDAO;
 
 	public static MongoDatabase init() {
 
@@ -20,6 +24,8 @@ public class Controller {
 		MongoClient mongoClient = new MongoClient(connectionString);
 
 		MongoDatabase database = mongoClient.getDatabase("city");
+
+		authorDAO = Controller.setSource(database);
 
 		return database;
 
@@ -33,22 +39,37 @@ public class Controller {
 
 	}
 
-	public static void add(AuthorDAO authorDAO) {
+	public static void add(Scanner reader) {
 
 		List<Book> books = new ArrayList<Book>();
 
-		books.add(new Book("To the lighthouse", 1927, 356));
-		books.add(new Book("Orlando", 1928, 423));
-		books.add(new Book("A room of my own", 1929, 122));
+		String authorName = UtilsIO.askForName(reader);
+		String authorSurname = UtilsIO.askForSurname(reader);
+		int authorAge = UtilsIO.askAge(reader);
 
-		Author virginia = new Author("Virgina", "Wolf", 59 , books);
+		Author newAuthor = new Author(authorName, authorSurname, authorAge, books);
 
-		authorDAO.saveAuthor(virginia);
+		authorDAO.saveAuthor(newAuthor);
 	}
 
-	public static void printAll(AuthorDAO authorDAO) {
+	public static void showAll() {
 
-		authorDAO.printAll();
+		authorDAO.showAll();
+	}
+
+	public static void delete(Scanner reader) {
+		// TODO Auto-generated method stub
+
+	}
+
+	public static void findone(Scanner reader) {
+		// TODO Auto-generated method stub
+
+	}
+
+	public static void update(Scanner reader) {
+		// TODO Auto-generated method stub
+
 	}
 
 }

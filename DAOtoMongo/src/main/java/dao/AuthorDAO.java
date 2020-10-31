@@ -37,7 +37,7 @@ public class AuthorDAO {
 		authorsCollection.insertOne(authorMongo);
 	}
 
-	public void printAll() {
+	public void showAll() {
 
 		MongoCollection<Document> authorsCollection = database.getCollection("authors");
 
