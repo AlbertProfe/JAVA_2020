@@ -2,9 +2,13 @@ package view;
 
 public enum MenuOptions {
 
-	ADD(1, "Add an author, type ADD"), SHOWALL(2, "Show all authors, type SHOW"),
-	UPDATE(3, "Update an author, type UPDATE"), DELETE(4, "Delete an author, type DELETE"),
-	FINDONE(5, "Find one author, type FIND"), QUIT(6, "Quit, type QUIT"), UNKNOWN(7, "unknown");
+	ADD(1, "Add an author, type ADD"),
+	SHOW(2, "Show all authors, type SHOW"),
+	UPDATE(3, "Update an author, type UPDATE"),
+	DELETE(4, "Delete an author, type DELETE"),
+	FIND(5, "Find one author, type FIND"),
+	QUIT(6, "Quit, type QUIT"),
+	UNKNOWN(7, "unknown");
 
 	private int optionInteger;
 	private String optionText;

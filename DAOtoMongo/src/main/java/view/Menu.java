@@ -41,13 +41,13 @@ public class Menu {
 			} else if (commandEnum.equals(MenuOptions.ADD)) {
 				Controller.add(reader);
 
-			} else if (commandEnum.equals(MenuOptions.SHOWALL)) {
+			} else if (commandEnum.equals(MenuOptions.SHOW)) {
 				Controller.showAll();
 
 			}  else if (commandEnum.equals(MenuOptions.DELETE)) {
 				Controller.delete(reader);
 
-			} else if (commandEnum.equals(MenuOptions.FINDONE)) {
+			} else if (commandEnum.equals(MenuOptions.FIND)) {
 				Controller.findone(reader);
 
 			} else if (commandEnum.equals(MenuOptions.UPDATE)) {

@@ -58,17 +58,25 @@ public class Controller {
 	}
 
 	public static void delete(Scanner reader) {
-		// TODO Auto-generated method stub
 
+		String authorName = UtilsIO.askForName(reader);
+		authorDAO.delete(authorName);
 	}
 
 	public static void findone(Scanner reader) {
-		// TODO Auto-generated method stub
+
+		String authorName = UtilsIO.askForName(reader);
+		authorDAO.findOne(authorName);
 
 	}
 
 	public static void update(Scanner reader) {
-		// TODO Auto-generated method stub
+	
+		String authorName = UtilsIO.askForName(reader);
+		String authorSurname = UtilsIO.askForSurname(reader);
+		int authorAge = UtilsIO.askAge(reader);
+		
+		authorDAO.update(authorName, authorSurname ,authorAge );
 
 	}
 

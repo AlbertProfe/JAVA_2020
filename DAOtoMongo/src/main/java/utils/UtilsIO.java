@@ -38,11 +38,7 @@ public class UtilsIO {
 		return reader.nextLine();
 	}
 	
-	public static void noAuthordMessage (String name) { 
-		//Print the complete DB
-		System.out.println(name + " does not exist in our DB!");
-		
-	}
+	
 	
 }
 
