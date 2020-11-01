@@ -8,7 +8,8 @@ public enum MenuOptions {
 	DELETE(4, "Delete an author, type DELETE"),
 	FIND(5, "Find one author, type FIND"),
 	QUIT(6, "Quit, type QUIT"),
-	UNKNOWN(7, "unknown");
+	ADDBOOK (7,"Add book to an author, type ADDBOOK"),
+	UNKNOWN(8, "unknown");
 
 	private int optionInteger;
 	private String optionText;

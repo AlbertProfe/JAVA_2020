@@ -18,7 +18,7 @@ public class Menu {
 		MongoDatabase database = Controller.init();
 
 		try {
-			TimeUnit.SECONDS.sleep(1);
+			TimeUnit.SECONDS.sleep(2);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
@@ -33,6 +33,7 @@ public class Menu {
 			MenuOptions commandEnum = MenuOptions.commandisValid(command);
 
 			if (commandEnum.equals(MenuOptions.QUIT)) {
+				Controller.close(database);
 				break;
 
 			} else if (commandEnum.equals(MenuOptions.UNKNOWN)) {
@@ -40,11 +41,14 @@ public class Menu {
 
 			} else if (commandEnum.equals(MenuOptions.ADD)) {
 				Controller.add(reader);
-
+				
+			} else if (commandEnum.equals(MenuOptions.ADDBOOK)) {
+				Controller.addBookAuthor(reader);
+				
 			} else if (commandEnum.equals(MenuOptions.SHOW)) {
 				Controller.showAll();
 
-			}  else if (commandEnum.equals(MenuOptions.DELETE)) {
+			} else if (commandEnum.equals(MenuOptions.DELETE)) {
 				Controller.delete(reader);
 
 			} else if (commandEnum.equals(MenuOptions.FIND)) {

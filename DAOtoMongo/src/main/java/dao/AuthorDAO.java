@@ -9,6 +9,7 @@ import com.mongodb.client.result.DeleteResult;
 import com.mongodb.client.MongoCollection;
 import model.Author;
 import model.Book;
+import utils.UtilsIO;
 
 import static com.mongodb.client.model.Filters.eq;
 
@@ -44,8 +45,8 @@ public class AuthorDAO {
 
 		MongoCollection<Document> authorsCollection = database.getCollection("authors");
 
-		for (Document cur : authorsCollection.find()) {
-			System.out.println(cur.toJson());
+		for (Document authorIt : authorsCollection.find()) {
+			System.out.println(authorIt.toJson());
 		}
 	}
 
@@ -61,32 +62,90 @@ public class AuthorDAO {
 			System.out.println("file not found");
 	}
 
+	public Document findOneDocument(String nameToFind) {
+
+		MongoCollection<Document> authorsCollection = this.getAuthorsCollection();
+
+		Document authorFound = authorsCollection.find(eq("name", nameToFind)).first();
+
+		return authorFound;
+	}
+
 	public void delete(String authorName) {
 
 		MongoCollection<Document> authorsCollection = this.getAuthorsCollection();
 		DeleteResult deletedAuthor = authorsCollection.deleteOne(eq("name", authorName));
 
-		System.out.println(deletedAuthor);
+		if (deletedAuthor != null)
+			System.out.println("Delete succesful: " + deletedAuthor);
+		else
+			System.out.println("file not found");
 
 	}
 
-	public void update(String authorName, String authorSurname, int authorAge) {
+	public void update(String authorNameToFind, String authorName, String authorSurname, int authorAge) {
 
 		MongoCollection<Document> authorsCollection = this.getAuthorsCollection();
 
-		Document updateResult = authorsCollection.findOneAndUpdate(eq("name", authorName),
-				new Document("$set", new Document("surname", authorSurname)));
-		//to-do update as well age ...
-		System.out.println(updateResult);
+		Document updateResult = authorsCollection.findOneAndUpdate(eq("name", authorNameToFind), new Document("$set",
+				new Document("name", authorName).append("surname", authorSurname).append("age", authorAge)));
+
+		UtilsIO.printUpdateResult(updateResult, this, authorNameToFind);
+	}
+
+	public void update(String authorNameToFind, String authorName) {
+		MongoCollection<Document> authorsCollection = this.getAuthorsCollection();
+
+		Document updateResult = authorsCollection.findOneAndUpdate(eq("name", authorNameToFind),
+				new Document("$set", new Document("name", authorName)));
+
+		UtilsIO.printUpdateResult(updateResult, this, authorNameToFind);
+	}
+
+	public void update(String authorNameToFind, String authorName, String authorSurname) {
+		MongoCollection<Document> authorsCollection = this.getAuthorsCollection();
+
+		Document updateResult = authorsCollection.findOneAndUpdate(eq("name", authorNameToFind),
+				new Document("$set", new Document("name", authorName).append("surname", authorSurname)));
+
+		UtilsIO.printUpdateResult(updateResult, this, authorNameToFind);
+	}
+
+	public void update(String authorNameToFind, String authorSurname, int authorAge) {
+		MongoCollection<Document> authorsCollection = this.getAuthorsCollection();
+
+		Document updateResult = authorsCollection.findOneAndUpdate(eq("name", authorNameToFind),
+				new Document("$set", new Document("surname", authorSurname).append("age", authorAge)));
+
+		UtilsIO.printUpdateResult(updateResult, this, authorNameToFind);
+	}
+
+	public void update(String authorNameToFind, int authorAge) {
+		MongoCollection<Document> authorsCollection = this.getAuthorsCollection();
+
+		Document updateResult = authorsCollection.findOneAndUpdate(eq("name", authorNameToFind),
+				new Document("$set", new Document("age", authorAge)));
+
+		UtilsIO.printUpdateResult(updateResult, this, authorNameToFind);
 
 	}
-	
+
+	public void update(String authorName, List<Book> addBook) {
+		MongoCollection<Document> authorsCollection = this.getAuthorsCollection();
+
+		// Document updateResult = authorsCollection.findOneAndUpdate(eq("name",
+		// authorName), new Document("$set",
+		// new Document("books", addBook)));
+
+		// UtilsIO.printUpdateResult ( updateResult, this, authorName);
+
+	}
+
 	public MongoCollection<Document> getAuthorsCollection() {
 
 		MongoCollection<Document> authorsCollection = database.getCollection("authors");
 		return authorsCollection;
 
 	}
-
 
 }
