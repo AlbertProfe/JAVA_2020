@@ -130,15 +130,19 @@ public class AuthorDAO {
 
 	}
 
-	public void update(String authorName, List<Book> addBook) {
+	public void update(String authorName, List<Book> addBooks) {
 		MongoCollection<Document> authorsCollection = this.getAuthorsCollection();
 
-		// Document updateResult = authorsCollection.findOneAndUpdate(eq("name",
-		// authorName), new Document("$set",
-		// new Document("books", addBook)));
-
-		// UtilsIO.printUpdateResult ( updateResult, this, authorName);
-
+		for (Book book : addBooks) {
+			Document bookMongo = new Document("_id", new ObjectId());
+			bookMongo.append("title", book.getTitle())
+			.append("year", book.getYear()).append("pages", book.getPages());
+			
+			Document updateResult = authorsCollection.findOneAndUpdate(eq("name", authorName),
+					new Document("$push", new Document("books",bookMongo)));
+			UtilsIO.printUpdateResult(updateResult, this, authorName);
+		}
+		
 	}
 
 	public MongoCollection<Document> getAuthorsCollection() {

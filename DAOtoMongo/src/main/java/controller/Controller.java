@@ -60,7 +60,7 @@ public class Controller {
 			
 		while (true) {
 
-			String command = UtilsIO.ask(reader, "Add Book (type QUIT to exit)?");
+			String command = UtilsIO.ask(reader, "Add Book (type QUIT to exit, otherwise go ahead)?");
 			MenuOptions commandEnum = MenuOptions.commandisValid(command);
 
 			if (commandEnum.equals(MenuOptions.QUIT)) {
