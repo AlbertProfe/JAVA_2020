@@ -9,7 +9,9 @@ import org.bson.Document;
 
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
+import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.result.DeleteResult;
 
 import dao.AuthorDAO;
 import model.Author;
@@ -48,16 +50,16 @@ public class Controller {
 		String authorName = UtilsIO.askForName(reader);
 		String authorSurname = UtilsIO.askForSurname(reader);
 		int authorAge = UtilsIO.askAge(reader);
-		
+
 		List<Book> books = new ArrayList<Book>();
-		
+
 		Author newAuthor = new Author(authorName, authorSurname, authorAge, addBook(reader, books));
 
 		authorDAO.saveAuthor(newAuthor);
 	}
-	
-	public static List<Book> addBook (Scanner reader, List<Book> books) {
-			
+
+	public static List<Book> addBook(Scanner reader, List<Book> books) {
+
 		while (true) {
 
 			String command = UtilsIO.ask(reader, "Add Book (type QUIT to exit, otherwise go ahead)?");
@@ -70,37 +72,46 @@ public class Controller {
 			String bookTitle = UtilsIO.askForTitle(reader);
 			int bookYear = UtilsIO.askForYear(reader);
 			int bookPages = UtilsIO.askForPages(reader);
-			
-			books.add(new Book (bookTitle, bookYear, bookPages));
+
+			books.add(new Book(bookTitle, bookYear, bookPages));
 		}
 		return books;
 	}
 
 	public static void addBookToAuthor(Scanner reader) {
-		
+
 		String authorName = UtilsIO.askForName(reader);
 		Document authorFound = authorDAO.findOneDocument(authorName);
 
 		if (authorFound != null) {
 			List<Book> books = new ArrayList<Book>();
 			authorDAO.update(authorName, addBook(reader, books));
-		}	
-		else
+		} else
 			System.out.println("file not found");
-		
+
 	}
 
 	public static void delete(Scanner reader) {
 
 		String authorName = UtilsIO.askForName(reader);
-		authorDAO.delete(authorName);
+		DeleteResult deletedAuthor = authorDAO.delete(authorName);
+
+		if (deletedAuthor != null)
+			System.out.println("Delete succesful: " + deletedAuthor);
+		else
+			System.out.println("file not found");
+
 	}
 
 	public static void findOne(Scanner reader) {
 
 		String authorName = UtilsIO.askForName(reader);
-		authorDAO.findOne(authorName);
+		Document authorFound = authorDAO.findOneDocument(authorName);
 
+		if (authorFound != null)
+			System.out.println(authorFound.toJson());
+		else
+			System.out.println("file not found");
 	}
 
 	public static void update(Scanner reader) {
@@ -135,12 +146,15 @@ public class Controller {
 
 	public static void showAll() {
 
-		authorDAO.showAll();
+		MongoCollection<Document> authorsCollection = authorDAO.showAll();
+
+		for (Document authorIt : authorsCollection.find()) {
+			System.out.println(authorIt.toJson());
+		}
 	}
 
 	public static void close(MongoDatabase database) {
 		// to-do close all connections
 	}
-
 
 }

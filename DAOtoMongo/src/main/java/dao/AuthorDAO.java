@@ -41,18 +41,6 @@ public class AuthorDAO {
 		authorsCollection.insertOne(authorMongo);
 	}
 
-	public void findOne(String nameToFind) {
-
-		MongoCollection<Document> authorsCollection = this.getAuthorsCollection();
-
-		Document authorFound = authorsCollection.find(eq("name", nameToFind)).first();
-
-		if (authorFound != null)
-			System.out.println(authorFound.toJson());
-		else
-			System.out.println("file not found");
-	}
-
 	public Document findOneDocument(String nameToFind) {
 
 		MongoCollection<Document> authorsCollection = this.getAuthorsCollection();
@@ -62,16 +50,12 @@ public class AuthorDAO {
 		return authorFound;
 	}
 
-	public void delete(String authorName) {
+	public DeleteResult delete(String authorName) {
 
 		MongoCollection<Document> authorsCollection = this.getAuthorsCollection();
 		DeleteResult deletedAuthor = authorsCollection.deleteOne(eq("name", authorName));
-
-		if (deletedAuthor != null)
-			System.out.println("Delete succesful: " + deletedAuthor);
-		else
-			System.out.println("file not found");
-
+		
+		return deletedAuthor;
 	}
 
 	public void update(String authorNameToFind, String authorName, String authorSurname, int authorAge) {
@@ -139,13 +123,11 @@ public class AuthorDAO {
 		
 	}
 	
-	public void showAll() {
+	public MongoCollection<Document> showAll() {
 
 		MongoCollection<Document> authorsCollection = database.getCollection("authors");
-
-		for (Document authorIt : authorsCollection.find()) {
-			System.out.println(authorIt.toJson());
-		}
+		
+		return authorsCollection;
 	}
 
 	public MongoCollection<Document> getAuthorsCollection() {
