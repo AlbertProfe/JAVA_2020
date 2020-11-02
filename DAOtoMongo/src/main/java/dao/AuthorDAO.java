@@ -49,7 +49,10 @@ public class AuthorDAO {
 		// finally, authorsCollecton calls insertOne and upload authorMongo, it is just
 		// ONE MONGO DOCUMENT
 		authorsCollection.insertOne(authorMongo);
+		
+
 	}
+	
 
 	// print all getting all documents from authors collection
 	public void printAll() {
