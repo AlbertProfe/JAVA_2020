@@ -14,24 +14,31 @@ public class Menu {
 
 	public void loopIO() {
 
+		
 		Scanner reader = new Scanner(System.in);
+		//create connection and DATABASE
 		MongoDatabase database = Controller.init();
 
+		//just sleep for 2 seconds to print on console all connection log from MONGO
 		try {
 			TimeUnit.SECONDS.sleep(2);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
 
+		//print Main Menu and options
 		PrintMenu printMenu = new PrintMenu();
 
+		//main loop to IO data  with user
 		while (true) {
 
 			printMenu.showMenu();
 			String command = UtilsIO.ask(reader, "Option?");
-
+			
+			//work with ENUM to choose options, and STRING<>ENUM 
 			MenuOptions commandEnum = MenuOptions.commandisValid(command);
 
+			//close database in case of quit
 			if (commandEnum.equals(MenuOptions.QUIT)) {
 				Controller.close(database);
 				break;

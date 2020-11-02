@@ -8,6 +8,7 @@ public class Main {
 
 		System.out.println("Loading ....");
 		
+		//create Menu object and invoke loopIO
 		Menu menu = new Menu();
 		menu.loopIO();
 		
