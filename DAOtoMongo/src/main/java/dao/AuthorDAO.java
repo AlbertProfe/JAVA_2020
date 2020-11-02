@@ -21,6 +21,10 @@ public class AuthorDAO {
 		this.database = database;
 	}
 
+	
+	//first parse JAVA object to DOCUMENT object
+	//author object and books objects within an array to DOCUMENT object
+	//insert author DOCUMENT object Mongo to Mongo database
 	public void saveAuthor(Author author) {
 
 		MongoCollection<Document> authorsCollection = this.getAuthorsCollection();
@@ -41,6 +45,8 @@ public class AuthorDAO {
 		 authorsCollection.insertOne(authorMongo);
 	}
 
+	// find one document in mongoDB by string name of author
+	//works as if name author was an id ... not good but enough so far
 	public Document findOneDocument(String nameToFind) {
 
 		MongoCollection<Document> authorsCollection = this.getAuthorsCollection();
@@ -50,6 +56,8 @@ public class AuthorDAO {
 		return authorFound;
 	}
 
+	// delete one document in mongoDB by string name of author
+	//works as if name author was an id ... not good but enough so far
 	public DeleteResult delete(String authorName) {
 
 		MongoCollection<Document> authorsCollection = this.getAuthorsCollection();
@@ -58,6 +66,9 @@ public class AuthorDAO {
 		return deletedAuthor;
 	}
 
+	//we need all the update methods, overload to complain controller
+	//use findOneAndUpdate by author name
+	//as we are at DAO we send printing task to UTILSIO
 	public void update(String authorNameToFind, String authorName, String authorSurname, int authorAge) {
 
 		MongoCollection<Document> authorsCollection = this.getAuthorsCollection();
@@ -123,6 +134,8 @@ public class AuthorDAO {
 		
 	}
 	
+	//get all authors from collections authors from database carried by authorDAO
+	//in order to return to controller to print all authors
 	public MongoCollection<Document> showAll() {
 
 		MongoCollection<Document> authorsCollection = database.getCollection("authors");
