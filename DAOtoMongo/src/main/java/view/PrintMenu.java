@@ -7,6 +7,8 @@ public class PrintMenu {
 	
 	public void showMenu() {
 		
+		
+		//print all menu
 		System.out.println("\r" + "Main Menu:");
 		System.out.println("---------------------------------");
 		System.out.println("Type one option, please:");
