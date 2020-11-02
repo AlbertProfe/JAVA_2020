@@ -40,10 +40,10 @@ public class Menu {
 				System.out.println("Unknown command!");
 
 			} else if (commandEnum.equals(MenuOptions.ADD)) {
-				Controller.add(reader);
+				Controller.addAuthor(reader);
 				
 			} else if (commandEnum.equals(MenuOptions.ADDBOOK)) {
-				Controller.addBookAuthor(reader);
+				Controller.addBookToAuthor(reader);
 				
 			} else if (commandEnum.equals(MenuOptions.SHOW)) {
 				Controller.showAll();

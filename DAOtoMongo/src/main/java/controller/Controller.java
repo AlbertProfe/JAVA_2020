@@ -43,7 +43,7 @@ public class Controller {
 
 	}
 
-	public static void add(Scanner reader) {
+	public static void addAuthor(Scanner reader) {
 
 		String authorName = UtilsIO.askForName(reader);
 		String authorSurname = UtilsIO.askForSurname(reader);
@@ -76,7 +76,7 @@ public class Controller {
 		return books;
 	}
 
-	public static void addBookAuthor(Scanner reader) {
+	public static void addBookToAuthor(Scanner reader) {
 		
 		String authorName = UtilsIO.askForName(reader);
 		Document authorFound = authorDAO.findOneDocument(authorName);
@@ -115,10 +115,10 @@ public class Controller {
 		String authorSurname = UtilsIO.askForSurname(reader);
 		int authorAge = UtilsIO.askAge(reader);
 
-		// name & surame & age
+		// name & surname & age
 		if (!authorName.isEmpty() && !authorSurname.isEmpty() && authorAge > 0) {
 			authorDAO.update(authorNameToFind, authorName, authorSurname, authorAge);
-			// name & surame
+			// name & surname
 		} else if (!authorName.isEmpty() && !authorSurname.isEmpty() && authorAge < 0) {
 			authorDAO.update(authorNameToFind, authorName, authorSurname);
 			// name
