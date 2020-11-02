@@ -69,6 +69,7 @@ public class AuthorDAO {
 	//we need all the update methods, overload to complain controller
 	//use findOneAndUpdate by author name
 	//as we are at DAO we send printing task to UTILSIO
+	//UPDATE name, surname, age
 	public void update(String authorNameToFind, String authorName, String authorSurname, int authorAge) {
 
 		MongoCollection<Document> authorsCollection = this.getAuthorsCollection();
@@ -79,6 +80,8 @@ public class AuthorDAO {
 		UtilsIO.printUpdateResult(updateResult, this, authorNameToFind);
 	}
 
+	//as we are at DAO we send printing task to UTILSIO
+	//UPDATE name
 	public void update(String authorNameToFind, String authorName) {
 		MongoCollection<Document> authorsCollection = this.getAuthorsCollection();
 
@@ -88,6 +91,8 @@ public class AuthorDAO {
 		UtilsIO.printUpdateResult(updateResult, this, authorNameToFind);
 	}
 
+	//as we are at DAO we send printing task to UTILSIO
+	//UPDATE name, surname
 	public void update(String authorNameToFind, String authorName, String authorSurname) {
 		MongoCollection<Document> authorsCollection = this.getAuthorsCollection();
 
@@ -97,6 +102,8 @@ public class AuthorDAO {
 		UtilsIO.printUpdateResult(updateResult, this, authorNameToFind);
 	}
 
+	//as we are at DAO we send printing task to UTILSIO
+	//UPDATE surname, age
 	public void update(String authorNameToFind, String authorSurname, int authorAge) {
 		MongoCollection<Document> authorsCollection = this.getAuthorsCollection();
 
@@ -106,6 +113,8 @@ public class AuthorDAO {
 		UtilsIO.printUpdateResult(updateResult, this, authorNameToFind);
 	}
 
+	//as we are at DAO we send printing task to UTILSIO
+	//UPDATE age
 	public void update(String authorNameToFind, int authorAge) {
 		MongoCollection<Document> authorsCollection = this.getAuthorsCollection();
 
@@ -116,6 +125,8 @@ public class AuthorDAO {
 
 	}
 
+	//as we are at DAO we send printing task to UTILSIO
+	//UPDATE books
 	public void update(String authorName, List<Book> booksToAdd) {
 		MongoCollection<Document> authorsCollection = this.getAuthorsCollection();
 
@@ -143,6 +154,7 @@ public class AuthorDAO {
 		return authorsCollection;
 	}
 
+	//getter from database: collection authors
 	public MongoCollection<Document> getAuthorsCollection() {
 
 		MongoCollection<Document> authorsCollection = database.getCollection("authors");
