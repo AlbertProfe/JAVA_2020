@@ -47,13 +47,14 @@ public class UtilsIO {
 
 		if (updateResult != null) {
 			System.out.println("Update succesful: " + updateResult);
+			
 			System.out.print("Updated to: ");
 			Document authorFound = authorDAO.findOneDocument(authorNameToFind);
 
 			if (authorFound != null)
 				System.out.println(authorFound.toJson());
 			else
-				System.out.println("file not found");
+				System.out.println("file not found: author found, saved and after that lost");
 
 		} else
 			System.out.println("file not found");

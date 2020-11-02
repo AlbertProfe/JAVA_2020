@@ -38,7 +38,7 @@ public class AuthorDAO {
 		authorMongo.append("name", author.getName()).append("surname", author.getSurname())
 				.append("age", author.getAge()).append("books", booksMongo);
 
-		authorsCollection.insertOne(authorMongo);
+		 authorsCollection.insertOne(authorMongo);
 	}
 
 	public Document findOneDocument(String nameToFind) {

@@ -58,6 +58,19 @@ public class Controller {
 		authorDAO.saveAuthor(newAuthor);
 	}
 
+	public static void addBookToAuthor(Scanner reader) {
+
+		String authorName = UtilsIO.askForName(reader);
+		Document authorFound = authorDAO.findOneDocument(authorName);
+
+		if (authorFound != null) {
+			List<Book> books = new ArrayList<Book>();
+			authorDAO.update(authorName, addBook(reader, books));
+		} else
+			System.out.println("file not found");
+
+	}
+
 	public static List<Book> addBook(Scanner reader, List<Book> books) {
 
 		while (true) {
@@ -76,19 +89,6 @@ public class Controller {
 			books.add(new Book(bookTitle, bookYear, bookPages));
 		}
 		return books;
-	}
-
-	public static void addBookToAuthor(Scanner reader) {
-
-		String authorName = UtilsIO.askForName(reader);
-		Document authorFound = authorDAO.findOneDocument(authorName);
-
-		if (authorFound != null) {
-			List<Book> books = new ArrayList<Book>();
-			authorDAO.update(authorName, addBook(reader, books));
-		} else
-			System.out.println("file not found");
-
 	}
 
 	public static void delete(Scanner reader) {
@@ -148,8 +148,8 @@ public class Controller {
 
 		MongoCollection<Document> authorsCollection = authorDAO.showAll();
 
-		for (Document authorIt : authorsCollection.find()) {
-			System.out.println(authorIt.toJson());
+		for (Document authorIterator : authorsCollection.find()) {
+			System.out.println(authorIterator.toJson());
 		}
 	}
 
