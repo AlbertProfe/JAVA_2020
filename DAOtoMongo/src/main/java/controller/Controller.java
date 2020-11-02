@@ -89,11 +89,6 @@ public class Controller {
 			System.out.println("file not found");
 		
 	}
-	
-	public static void showAll() {
-
-		authorDAO.showAll();
-	}
 
 	public static void delete(Scanner reader) {
 
@@ -101,7 +96,7 @@ public class Controller {
 		authorDAO.delete(authorName);
 	}
 
-	public static void findone(Scanner reader) {
+	public static void findOne(Scanner reader) {
 
 		String authorName = UtilsIO.askForName(reader);
 		authorDAO.findOne(authorName);
@@ -136,6 +131,11 @@ public class Controller {
 			authorDAO.update(authorNameToFind, authorAge);
 		}
 
+	}
+
+	public static void showAll() {
+
+		authorDAO.showAll();
 	}
 
 	public static void close(MongoDatabase database) {

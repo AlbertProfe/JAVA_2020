@@ -52,7 +52,7 @@ public class Menu {
 				Controller.delete(reader);
 
 			} else if (commandEnum.equals(MenuOptions.FIND)) {
-				Controller.findone(reader);
+				Controller.findOne(reader);
 
 			} else if (commandEnum.equals(MenuOptions.UPDATE)) {
 				Controller.update(reader);

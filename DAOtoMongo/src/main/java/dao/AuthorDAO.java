@@ -41,15 +41,6 @@ public class AuthorDAO {
 		authorsCollection.insertOne(authorMongo);
 	}
 
-	public void showAll() {
-
-		MongoCollection<Document> authorsCollection = database.getCollection("authors");
-
-		for (Document authorIt : authorsCollection.find()) {
-			System.out.println(authorIt.toJson());
-		}
-	}
-
 	public void findOne(String nameToFind) {
 
 		MongoCollection<Document> authorsCollection = this.getAuthorsCollection();
@@ -146,6 +137,15 @@ public class AuthorDAO {
 			UtilsIO.printUpdateResult(updateResult, this, authorName);
 		}
 		
+	}
+	
+	public void showAll() {
+
+		MongoCollection<Document> authorsCollection = database.getCollection("authors");
+
+		for (Document authorIt : authorsCollection.find()) {
+			System.out.println(authorIt.toJson());
+		}
 	}
 
 	public MongoCollection<Document> getAuthorsCollection() {
