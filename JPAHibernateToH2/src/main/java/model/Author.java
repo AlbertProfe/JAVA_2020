@@ -1,11 +1,15 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -17,11 +21,13 @@ public class Author {
 	private Integer id;
 	private String name;
 	private String country;
+	@OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
+	private List<Book> books = new ArrayList<>();
 
 	public Author() {
 	}
 
-	public Author(String name , String country) {
+	public Author(String name, String country) {
 		this.name = name;
 		this.country = country;
 	}
@@ -29,7 +35,7 @@ public class Author {
 	public Author(Integer id, String name) {
 		this.id = id;
 		this.name = name;
-		
+
 	}
 
 	public Integer getId() {
@@ -56,8 +62,18 @@ public class Author {
 		this.country = country;
 	}
 
+	public List<Book> getBooks() {
+		return books;
+	}
+
+	public void addBook(Book book) {
+		books.add(book);
+		book.setAuthor(this);
+	}
+
 	@Override
 	public String toString() {
-		return "Author{" + "id=" + id + ", name='" + name + '\'' + ", country='" + country + '\'' + '}';
+		return "Author{" + "id=" + id + ", name='" + name + '\'' + ", country='" + country + '\'' + ", books=" + books
+				+ '}';
 	}
 }
