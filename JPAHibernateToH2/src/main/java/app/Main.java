@@ -73,7 +73,7 @@ public class Main {
 		queryBook2.ifPresent(System.out::println);
 
 		// Find a book by name using a named query, that is "A room of my own"
-		Optional<Book> queryBook3 = bookRepository.findByNameNamedQuery("A room of my own");
+		Optional<Book> queryBook3 = bookRepository.findByTitleNamedQuery("A room of my own");
 		System.out.println("Query for book 3:");
 		queryBook3.ifPresent(System.out::println);
 

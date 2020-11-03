@@ -29,7 +29,7 @@ public class BookRepository {
 		return book != null ? Optional.of(book) : Optional.empty();
 	}
 
-	public Optional<Book> findByNameNamedQuery(String title) {
+	public Optional<Book> findByTitleNamedQuery(String title) {
 		Book book = entityManager.createNamedQuery("Book.findByTitle", Book.class).setParameter("name", title)
 				.getSingleResult();
 		return book != null ? Optional.of(book) : Optional.empty();
