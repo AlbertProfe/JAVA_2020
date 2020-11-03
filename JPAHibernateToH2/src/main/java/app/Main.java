@@ -53,6 +53,7 @@ public class Main {
 		authors.forEach(System.out::println);
 
 		// Find author by name, that is Leon Tolstoi
+		// using Optional JAVA 8 is nice cuase be may us ifPresent
 		Optional<Author> authorByName = authorRepository.findByName("Leon Tolstoi");
 		System.out.println("Searching for an author by name: ");
 		authorByName.ifPresent(System.out::println);
