@@ -15,7 +15,7 @@ public class Main {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("library");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         
-        // Create our repositories
+        // Create our repositories ...
         AuthorRepository authorRepository = new AuthorRepository(entityManager);
         // Create an author
        // Author virginia = new Author("Virginia Wolf", "UK");
