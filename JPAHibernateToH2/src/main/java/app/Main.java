@@ -13,6 +13,7 @@ import java.util.Optional;
 
 public class Main {
 	public static void main(String[] args) {
+		
 		// Create our entity manager..
 		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("library");
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
@@ -20,29 +21,35 @@ public class Main {
 		// Create our repositories ...
 		AuthorRepository authorRepository = new AuthorRepository(entityManager);
 		BookRepository bookRepository = new BookRepository(entityManager);
-		// Create an author
+		
+		// Create four authors
 		Author virginia = new Author("Virginia Wolf", "UK");
 		Author leon = new Author("Leon Tolstoi", "Russia");
 		Author victor = new Author("Victor Hugo", "French");
 		Author dante = new Author("Dante Alighieri", "Italy");
 
+		// and after authors,
+		//create three books for the first author, Virginia
 		virginia.addBook(new Book("To the lighthouse"));
 		virginia.addBook(new Book("Orlando"));
 		virginia.addBook(new Book("A room of my own"));
-
+		
+		//using optional is a very good idea, from JAVA 8
 		Optional<Author> savedAuthor1 = authorRepository.save(virginia);
 		Optional<Author> savedAuthor2 = authorRepository.save(leon);
 		Optional<Author> savedAuthor3 = authorRepository.save(victor);
 		Optional<Author> savedAuthor4 = authorRepository.save(dante);
 
 		System.out.println("Saved author: " + savedAuthor1.get());
+		
 		// Find all authors
 		List<Author> authors = authorRepository.findAll();
 		System.out.println("Authors:");
 		for (Author authorToPrint : authors) {
 			System.out.println(authorToPrint);
 		}
-
+		// another way to write for in java
+		// authors.forEach(author -> System.out.println(author));
 		authors.forEach(System.out::println);
 
 		// Find author by name, that is Leon Tolstoi
