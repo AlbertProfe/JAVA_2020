@@ -2,6 +2,7 @@ package repository;
 
 import javax.persistence.EntityManager;
 
+import model.Author;
 import model.Book;
 
 import java.util.List;
@@ -46,5 +47,22 @@ public class BookRepository {
 			e.printStackTrace();
 		}
 		return Optional.empty();
+	}
+	
+	public Optional<Book> deleteByTitle(String title) {
+		Book book = entityManager.createNamedQuery("Book.findByTitle", Book.class)
+				.setParameter("title", title).getSingleResult();
+
+		System.out.println(book);
+		entityManager.getTransaction().begin();
+		entityManager.remove(book);
+		entityManager.getTransaction().commit();
+
+		Optional<Book> resultDelete;
+		if (book != null)
+			resultDelete = Optional.of(book);
+		else
+			resultDelete = Optional.empty();
+		return resultDelete;
 	}
 }

@@ -87,7 +87,7 @@ public class Main {
 		queryBook3.ifPresent(System.out::println);
 
 		// Add a book to author Virginia Wolf, the #4 so "Mrs Daloway"
-		//Virginia Wolf is id #1
+		// Virginia Wolf is id #1
 		// and JAVA 8 is ready to help us with ifPresent and lambda
 		Optional<Author> bookToAuthor = authorRepository.findById(1);
 		bookToAuthor.ifPresent(bookToAdd -> {

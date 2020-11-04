@@ -1,10 +1,17 @@
 package model;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -20,9 +27,14 @@ public class Book {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	private String title;
-	@ManyToOne
-	@JoinColumn(name = "AUTHOR_ID")
-	private Author author;
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+    @JoinTable(
+            name = "Author_Book",
+            joinColumns = {@JoinColumn(name = "idBook")},
+            inverseJoinColumns = {@JoinColumn(name = "idAuthor")}
+    )
+    private Set<Author> authors = new HashSet<>();
+	
 
 	public Book() {
 	}
@@ -52,16 +64,19 @@ public class Book {
 		this.title = name;
 	}
 
-	public Author getAuthor() {
-		return author;
+
+	public Set<Author> getAuthors() {
+		return authors;
 	}
 
-	public void setAuthor(Author author) {
-		this.author = author;
+	public void setAuthors(Set<Author> authors) {
+		this.authors = authors;
 	}
 
 	@Override
 	public String toString() {
-		return "Book{" + "id=" + id + ", name='" + title + '\'' + ", author=" + author.getName() + '}';
+		return "Book [id=" + id + ", title=" + title +  "]";
 	}
+
+	
 }

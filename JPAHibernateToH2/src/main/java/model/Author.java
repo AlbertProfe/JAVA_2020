@@ -1,13 +1,17 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -22,8 +26,11 @@ public class Author {
 	private Integer id;
 	private String name;
 	private String country;
-	@OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
-	private List<Book> books = new ArrayList<>();
+	
+	@ManyToMany(mappedBy = "authors", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    private Set<Book> books = new HashSet<>();
+	
+	
 
 	public Author() {
 	}
@@ -63,18 +70,24 @@ public class Author {
 		this.country = country;
 	}
 
-	public List<Book> getBooks() {
+	public Set<Book> getBooks() {
 		return books;
 	}
 
-	public void addBook(Book book) {
-		books.add(book);
-		book.setAuthor(this);
+	public void setBooks(Set<Book> books) {
+		this.books = books;
 	}
+	
+	
+	public void addBook(Book book) {
+        books.add(book);
+        book.getAuthors().add(this);
+    }
 
 	@Override
 	public String toString() {
-		return "Author{" + "id=" + id + ", name='" + name + '\'' + ", country='" + country + '\'' + ", books=" + books
-				+ '}';
+		return "Author [id=" + id + ", name=" + name + ", country=" + country +  "]";
 	}
+
+	
 }

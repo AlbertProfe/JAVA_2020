@@ -56,19 +56,16 @@ public class AuthorRepository {
 			resultFind = Optional.empty();
 		return resultFind;
 	}
-	
+
 	public Optional<Author> deleteByName(String name) {
 		Author author = entityManager.createNamedQuery("Author.findByName", Author.class).setParameter("name", name)
 				.getSingleResult();
 
-		
 		System.out.println(author);
 		entityManager.getTransaction().begin();
 		entityManager.remove(author);
 		entityManager.getTransaction().commit();
-		
-		
-		
+
 		Optional<Author> resultDelete;
 		if (author != null)
 			resultDelete = Optional.of(author);
@@ -76,7 +73,5 @@ public class AuthorRepository {
 			resultDelete = Optional.empty();
 		return resultDelete;
 	}
-	
-	
 
 }
