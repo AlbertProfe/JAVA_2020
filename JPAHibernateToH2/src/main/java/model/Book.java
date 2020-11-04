@@ -20,6 +20,7 @@ public class Book {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	private String title;
+	
 	@ManyToOne
 	@JoinColumn(name = "AUTHOR_ID")
 	private Author author;

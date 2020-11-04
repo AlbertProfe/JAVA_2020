@@ -16,14 +16,17 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "AUTHOR")
 @NamedQueries({ @NamedQuery(name = "Author.findByName", query = "SELECT a FROM Author a WHERE a.name = :name") })
+
 public class Author {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	private String name;
 	private String country;
+	
 	@OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
 	private List<Book> books = new ArrayList<>();
+	
 
 	public Author() {
 	}

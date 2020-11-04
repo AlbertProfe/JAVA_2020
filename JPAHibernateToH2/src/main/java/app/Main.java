@@ -16,6 +16,7 @@ public class Main {
 		// Create our entity manager..
 		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("library");
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
+		
 
 		// Create our repositories ...
 		AuthorRepository authorRepository = new AuthorRepository(entityManager);
@@ -33,7 +34,7 @@ public class Main {
 		virginia.addBook(new Book("Orlando"));
 		virginia.addBook(new Book("A room of my own"));
 		
-		//using optional is a very good idea, from JAVA 8
+		// using optional is a very good idea, from JAVA 8
 		Optional<Author> savedAuthor1 = authorRepository.save(virginia);
 		Optional<Author> savedAuthor2 = authorRepository.save(leon);
 		Optional<Author> savedAuthor3 = authorRepository.save(victor);
