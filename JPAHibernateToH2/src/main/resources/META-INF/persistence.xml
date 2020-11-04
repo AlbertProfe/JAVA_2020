@@ -6,7 +6,7 @@
 
 
 	<persistence-unit name="library"
-		transaction-type="RESOURCE_LOCAL">
+	transaction-type="RESOURCE_LOCAL">
 		<!-- Persistence provider -->
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 		<!-- Entity classes -->
