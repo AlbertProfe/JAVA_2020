@@ -25,17 +25,18 @@ public class BookRepository {
 
 	public Optional<Book> findByTitle(String title) {
 		Book book = entityManager.createQuery("SELECT b FROM Book b WHERE b.title = :title", Book.class)
-				.setParameter("name", title).getSingleResult();
+				.setParameter("title", title).getSingleResult();
 		return book != null ? Optional.of(book) : Optional.empty();
 	}
 
 	public Optional<Book> findByTitleNamedQuery(String title) {
-		Book book = entityManager.createNamedQuery("Book.findByTitle", Book.class).setParameter("name", title)
+		Book book = entityManager.createNamedQuery("Book.findByTitle", Book.class).setParameter("title", title)
 				.getSingleResult();
 		return book != null ? Optional.of(book) : Optional.empty();
 	}
 
 	public Optional<Book> save(Book book) {
+		
 		try {
 			entityManager.getTransaction().begin();
 			entityManager.persist(book);

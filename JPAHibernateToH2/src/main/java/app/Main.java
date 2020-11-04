@@ -50,10 +50,12 @@ public class Main {
 		}
 		// another way to write for in java
 		// authors.forEach(author -> System.out.println(author));
+		//besides we use the "::" operator to avoid
+		// the creation and use of a tag object as a index at FOR
 		authors.forEach(System.out::println);
 
 		// Find author by name, that is Leon Tolstoi
-		// using Optional JAVA 8 is nice cuase be may us ifPresent
+		// using Optional JAVA 8 is nice cause be may us ifPresent
 		Optional<Author> authorByName = authorRepository.findByName("Leon Tolstoi");
 		System.out.println("Searching for an author by name: ");
 		authorByName.ifPresent(System.out::println);
@@ -86,6 +88,8 @@ public class Main {
 		queryBook3.ifPresent(System.out::println);
 
 		// Add a book to author Virginia Wolf, the #4 so "Mrs Daloway"
+		//Virginia Wolf is id #1
+		// and JAVA 8 is ready to help us with ifPresent and lambda
 		Optional<Author> bookToAuthor = authorRepository.findById(1);
 		bookToAuthor.ifPresent(bookToAdd -> {
 			bookToAdd.addBook(new Book("Mrs Daloway"));
