@@ -6,27 +6,27 @@
 
 
 	<persistence-unit name="library"
-	transaction-type="RESOURCE_LOCAL">
+		transaction-type="RESOURCE_LOCAL">
 		<!-- Persistence provider -->
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-		
-		
+
+
 		<!-- Entity classes -->
-       <class>model.Author</class>
-        <class>model.Book</class>
+		<class>model.Author</class>
+		<class>model.Book</class>
+
+		<!-- propieties of my persistence unit -->
 		<properties>
+		
+			<!-- form MY H2 DATABASE -->
 			<property name="javax.persistence.jdbc.driver"
 				value="org.h2.Driver" />
-			
-			
 			<property name="javax.persistence.jdbc.url"
 				value="jdbc:h2:tcp://localhost/~/books" />
 			<property name="javax.persistence.jdbc.user" value="albert" />
 			<property name="javax.persistence.jdbc.password"
 				value="1234" />
-			
-			
-			
+
 			<property name="hibernate.dialect"
 				value="org.hibernate.dialect.H2Dialect" />
 			<property name="hibernate.hbm2ddl.auto" value="update" />
@@ -36,7 +36,8 @@
 			<property name="hibernate.format_sql" value="true" />
 			<property name="hibernate.use_sql_comments" value="true" />
 		</properties>
+		
 	</persistence-unit>
-	
-	
+
+
 </persistence>
