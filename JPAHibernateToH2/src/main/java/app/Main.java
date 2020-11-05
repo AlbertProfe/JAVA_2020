@@ -96,7 +96,15 @@ public class Main {
 			bookToAdd.addBook(new Book("Mrs Daloway"));
 			System.out.println("Saved author: " + authorRepository.save(bookToAdd));
 		});
-
+		
+		// To show how manyToMany works we assign book #2, that is "Orlando"
+		// to author #3 Victor Hugo, so one single boos has got 2 authors
+		bookToAuthor = authorRepository.findById(3);
+		bookToAuthor.ifPresent(bookToAdd -> {
+			bookToAdd.addBook(books.get(1));
+			System.out.println("Saved author: " + authorRepository.save(bookToAdd));
+		});
+		
 		// Close the entity manager and associated factory
 		entityManager.close();
 		entityManagerFactory.close();
