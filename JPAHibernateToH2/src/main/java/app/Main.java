@@ -29,7 +29,7 @@ public class Main {
 		Author victor = new Author("Victor Hugo", "French");
 		Author dante = new Author("Dante Alighieri", "Italy");
 
-		// and after authors,
+		// and after authors, add books to author
 		//create three books for the first author, Virginia
 		virginia.addBook(new Book("To the lighthouse"));
 		virginia.addBook(new Book("Orlando"));
