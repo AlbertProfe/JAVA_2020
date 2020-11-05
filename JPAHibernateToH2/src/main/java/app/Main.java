@@ -13,11 +13,11 @@ import java.util.Optional;
 public class Main {
 	public static void main(String[] args) {
 		
-		// Create our entity manager......
+		// Create our entity manager
 		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("library");
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
 
-		// Create our repositories ...
+		// Create our repositories
 		AuthorRepository authorRepository = new AuthorRepository(entityManager);
 		BookRepository bookRepository = new BookRepository(entityManager);
 		
