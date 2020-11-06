@@ -27,6 +27,7 @@ public class Controller {
 
 		// Create our repositories
 		BookRepository bookRepository = new BookRepository(entityManager);
+		
 		return bookRepository;
 
 	}

@@ -38,7 +38,7 @@ public class Book {
 	// so, as books is the owner. it makes the tough job, that is, create the Author_Book auxiliary table
 	// auxiliary table: foreign keys from books and authors
 	// owner side is book so joinColumns annotation has idBook as a column name (foreign key)
-	// inverse side is auhtor so inverseJoinColumn has idAuthor as a column name (foreign key)
+	// inverse side is author so inverseJoinColumn has idAuthor as a column name (foreign key)
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     @JoinTable(
             name = "Author_Book",

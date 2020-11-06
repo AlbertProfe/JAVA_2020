@@ -1,12 +1,8 @@
 package app;
 
-
-
 import controller.Controller;
-
 import repository.AuthorRepository;
 import repository.BookRepository;
-
 
 public class Main {
 	
