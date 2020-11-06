@@ -19,6 +19,12 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "BOOK")
+//this is JPQL very similar to SQL
+//it operates on entities, their fields, and their relationships
+//NOT on database column names
+//SELECT returnedEntity FROM entityName object WHERE whereClause
+//FROM entityName object (object from class entityNAME)
+//@namedQueries -> name + query
 @NamedQueries({ @NamedQuery(name = "Book.findByTitle", query = "SELECT b FROM Book b WHERE b.title = :title"),
 		@NamedQuery(name = "Book.findAll", query = "SELECT b FROM Book b") })
 public class Book {
@@ -27,6 +33,13 @@ public class Book {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	private String title;
+	// persistence will propagate (cascade) all EntityManager operations
+	// PERSIST, REMOVE, REFRESH, MERGE, DETACH to the relating entities.
+	// The side which doesn't have the mappedBy attribute is the owner: books is the owner and authors is inverse side
+	// so, books is the owner: it makes the tough job, that is, create the Author_Book auxiliary table
+	// auxiliary table: foreign keys from books and authors
+	// owner is book so joinColumns is idBook
+	// inverse is auhtor so inverseJoinColumn is idAuthor
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     @JoinTable(
             name = "Author_Book",
