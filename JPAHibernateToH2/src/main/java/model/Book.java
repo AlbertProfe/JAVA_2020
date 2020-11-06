@@ -33,7 +33,7 @@ public class Book {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	private String title;
-	// persistence will propagate (cascade) all EntityManager operations
+	// persistence will propagate (cascade) all EntityManager operations..
 	// PERSIST, REMOVE, REFRESH, MERGE, DETACH to the relating entities.
 	// The side which doesn't have the mappedBy attribute is the owner: books is the owner and authors is inverse side
 	// so, books is the owner: it makes the tough job, that is, create the Author_Book auxiliary table
