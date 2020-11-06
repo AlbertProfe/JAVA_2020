@@ -36,10 +36,10 @@ public class Book {
 	// persistence will propagate (cascade) all EntityManager operations..
 	// PERSIST, REMOVE, REFRESH, MERGE, DETACH to the relating entities.
 	// The side which doesn't have the mappedBy attribute is the owner: books is the owner and authors is inverse side
-	// so, books is the owner: it makes the tough job, that is, create the Author_Book auxiliary table
+	// so, as books is the owner. it makes the tough job, that is, create the Author_Book auxiliary table
 	// auxiliary table: foreign keys from books and authors
-	// owner is book so joinColumns is idBook
-	// inverse is auhtor so inverseJoinColumn is idAuthor
+	// owner side is book so joinColumns annotation has idBook as a column name (foreign key)
+	// inverse side is auhtor so inverseJoinColumn has idAuthor as a column name (foreign key)
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     @JoinTable(
             name = "Author_Book",
