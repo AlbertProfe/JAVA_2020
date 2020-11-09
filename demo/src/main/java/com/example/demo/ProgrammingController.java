@@ -10,7 +10,7 @@ public class ProgrammingController {
 	@RequestMapping("/java")
 	public String java() {
 		
-		// controller from path /programming/java to java.html
+		// controller from path /programming/java to java.html in templates
 		return "java";
 		
 	}
